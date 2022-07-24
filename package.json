@@ -2,8 +2,8 @@
   "name": "assignment-3-3",
   "version": "1.0.0",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "vue-cli-service serve src/main.js",
+    "build": "vue-cli-service build src/main.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-eslint": "^4.5.19",
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
     "@vue/eslint-config-prettier": "^6.0.0",
