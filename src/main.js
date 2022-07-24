@@ -25,6 +25,7 @@ import {
   ToastPlugin,
   LayoutPlugin,
 } from "bootstrap-vue";
+import { state } from "./store";
 [
   FormGroupPlugin,
   FormPlugin,
@@ -78,6 +79,7 @@ const shared_data = {
     localStorage.removeItem("username");
     this.username = undefined;
   },
+  server_domain: state.server_domain,
 };
 console.log(shared_data);
 // Vue.prototype.$root.store = shared_data;

@@ -14,6 +14,8 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
+const store = require("../store");
+
 export default {
   name: "RecipePreviewList",
   components: {
@@ -37,12 +39,14 @@ export default {
     async updateRecipes() {
       try {
         const response = await this.axios.get(
-          this.$root.store.server_domain + "/recipes/random",
+          store.state.server_domain+"/recipes/random",
+          //"https://recipeWizard.cs.bgu.ac.il/recipes/random",
+          //process.env.server_domain + "/recipes/random",
           // "https://test-for-3-2.herokuapp.com/recipes/random"
         );
 
-        // console.log(response);
-        const recipes = response.data.recipes;
+        console.log(response.data);
+        const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
         // console.log(this.recipes);
