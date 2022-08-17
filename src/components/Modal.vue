@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" @submit.stop.prevent="handleSubmit">
+  <form ref="form">
         <b-form-group
           label="Title"
           label-for="title-input"
@@ -72,38 +72,30 @@
           label="vegan"
           label-for="vegan"
         >
-          <b-form-select
-            id="vegan"
-            v-model="vegan"
-            :options="vegan"
-          ></b-form-select>
+        <b-form-select v-model="selected" :options="vegan"></b-form-select>
         </b-form-group>
 
         <b-form-group
           id="input-group-vegetarian"
           label-cols-sm="3"
-          label="vegetarian-label"
+          label="vegetarian"
           label-for="vegetarian"
         >
-          <b-form-select
-            id="vegetarian"
-            v-model="vegetarian"
-            :options="vegetarian"
-          ></b-form-select>
+        <b-form-select v-model="selected" :options="vegetarian"></b-form-select>
         </b-form-group>
 
         <b-form-group
           id="input-group-gluten"
           label-cols-sm="3"
-          label="gluten-label"
-          label-for="gluten"
+          label="gluten free"
+          label-for="gluten free"
         >
-          <b-form-select
-            id="gluten"
-            v-model="gluten"
-            :options="gluten"
-          ></b-form-select>
+        <b-form-select v-model="selected" :options="gluten"></b-form-select>
         </b-form-group>
+
+        <div>
+          <b-btn variant="outline-primary" @click="addRecipe">Create</b-btn>
+        </div>
 
       </form>
 </template>
@@ -139,7 +131,7 @@ export default {
     };
     },
     methods: {
-      async handleSubmit() {
+      async addRecipe() {
         try {
         
         const response = await this.axios.post(

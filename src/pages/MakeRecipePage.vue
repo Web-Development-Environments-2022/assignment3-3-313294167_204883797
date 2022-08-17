@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-button v-b-modal.modal-add-recipe>Add New Recipe</b-button>
-    <b-modal v-model="modalShow" id="modal-add-recipe" title="Add New Recipe">
+    <b-modal :ok-disabled="true" v-model="modalShow" id="modal-add-recipe" title="Add New Recipe">
       <div>
         <Modal/>
       </div>
