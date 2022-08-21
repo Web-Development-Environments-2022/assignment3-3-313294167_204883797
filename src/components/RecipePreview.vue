@@ -9,7 +9,7 @@
     class="recipe-preview" v-if="recipe_viewed" style="color: purple"
   > -->
     <div>
-      <b-card
+      <b-card 
         v-bind:title= "recipe.title"
         v-bind:img-src= "recipe.image"
         img-alt="Image"
@@ -25,6 +25,7 @@
       </b-card>
     </div>
   </router-link>
+  <button v-on:click="addToFavorites">❤</button>
   <!-- <router-link 
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
@@ -57,15 +58,15 @@
 export default {
   name: "RecipePreview",
   mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
+    
+    this.axios.get(this.recipe.image).then(() => {
       this.image_load = true;
     });
   },
   data() {
-    console.log(this.recipe);
     return {
       image_load: false,
-      // recipe_viewed: this.recipe.viewed,
+      // TODO: recipe_viewed: this.recipe.viewed,
     };
   },
   props: {
@@ -73,7 +74,26 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+   methods:{ 
+      async addToFavorites() {
+        const url = this.$root.store.server_domain + "/users/favorites"
+        try {
+            const response = await this.axios.post(
+              url,
+              {
+                user_name: this.$root.store.username,
+                recipe_id: this.recipe.id
+              }
+            );
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
+   }
+
+
 };
 </script>
 
@@ -157,6 +177,12 @@ export default {
 .card-title {
     margin-bottom: .75rem;
     font-size: 1rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.5rem;
 }
 
 </style>
